@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">how  r u feeling today?</string>
+    <string name="action_settings">Settings</string>
+    <string name="smile">:-)</string>
+    <string name="surprise">:-o</string>
+    <string name="anger">:-/</string>
+    <string name="sick">:-(</string>
+    <string name="textview">Dont forget to set your preferences (Settings)</string>
+
+</resources>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <style> 
+            #format {text-align: center}
+        </style>  
+        <script>
+            var multiplier = new Array();
+            multiplier[0] = 0;
+            multiplier[1] = 1;
+            multiplier[2] = 2;
+            multiplier[3] = 3;
+            multiplier[4] = 4;
+            multiplier[5] = 5;
+            multiplier[6] = 6;
+            multiplier[7] = 7;
+            multiplier[8] = 8;
+            multiplier[9] = 9;
+            multiplier[10] = -1;
+            multiplier[11] = -2;
+            var tolerance = new Array();
+            tolerance[0] = "+/-5%";
+            tolerance[1] = "+/-10%";
+            tolerance[2] = "+/-20%";
+            function format(ohmage) {
+                if (ohmage >= 1e6) {
+                    ohmage /= 1e6;
+                    return "" + ohmage + " Mohms";
+                } else {
+                    if (ohmage >= 1e3) {
+                        ohmage /= 1e3;
+                        return "" + ohmage + " Kohms";
+                    } else {
+                        return "" + ohmage + " ohms";
+                    }
+                }
+            }
+            
+            function calcOhms() {
+                var form = document.forms["input"];
+                var d1 = form.tensSelect.selectedIndex;
+                var d2 = form.onesSelect.selectedIndex;
+                var m = form.multiplierSelect.selectedIndex;
+                var t = form.toleranceSelect.selectedIndex;
+                var ohmage = (d1 * 10) + d2;
+                ohmage = eval("" + ohmage + "e" + multiplier[m]);
+                ohmage = format(ohmage);
+                var tol = tolerance[t];
+                document.forms["output"].result.value = ohmage + ", " + tol;
+            }
+
+            var colorArray = new Array("black", "blue", "brown", "gold", "gray", "green", "none", "orange", "red", "silver", "violet", "white", "yellow");
+            var imageDB = new Array();
+            for (i = 0; i < colorArray.length; i++) {
+                imageDB[colorArray[i]] = new Image(21, 182);
+                imageDB[colorArray[i]].src = colorArray[i] + ".png";
+            }
+
+            function setTens(choice) {
+                var tensColor = choice.options[choice.selectedIndex].value;
+                document.tens.src = imageDB[tensColor].src;
+                calcOhms();
+            }
+            function setOnes(choice) {
+                var onesColor = choice.options[choice.selectedIndex].value;
+                document.ones.src = imageDB[onesColor].src;
+                calcOhms();
+            }
+            function setMult(choice) {
+                var multColor = choice.options[choice.selectedIndex].value;
+                document.mult.src = imageDB[multColor].src;
+                calcOhms();
+            }
+            function setTol(choice) {
+                var tolColor = choice.options[choice.selectedIndex].value;
+                document.tol.src = imageDB[tolColor].src;
+                calcOhms();
+            }
+
+            window.onload = calcOhms;
+        </script>
+    </head>
+    <body>
+        <div id="format">
+        <form name = "input" >
+
+            <select name = "tensSelect" onChange = "setTens(this)">
+                <option value = "black" selectED> Black
+                <option value = "brown"> Brown
+                <option value = "red"> Red
+                <option value = "orange"> Grange
+                <option value = "yellow"> Yellow
+                <option value = "green"> Green
+                <option value = "blue"> Blue
+                <option value = "violet"> Violet
+                <option value = "gray"> Gray
+                <option value = "white"> White
+            </select>
+
+            <select name = "onesSelect" onChange = "setOnes(this)">
+                <option value = "black" selectED> Black
+                <option value = "brown"> Brown
+                <option value = "red"> Red
+                <option value = "orange"> Orange
+                <option value = "yellow"> Yellow
+                <option value = "green"> Green
+                <option value = "blue"> Blue
+                <option value = "violet"> Violet
+                <option value = "gray"> Gray
+                <option value = "white"> White
+            </select>
+
+            <select name = "multiplierSelect" onChange = "setMult(this)">
+                <option value = "black" selectED> Black
+                <option value = "brown"> Brown
+                <option value = "red"> Red
+                <option value = "orange"> Orange
+                <option value = "yellow"> Yellow
+                <option value = "green"> Green
+                <option value = "blue"> Blue
+                <option value = "violet"> Violet
+                <option value = "gray"> Gray
+                <option value = "white"> White
+                <option value = "gold"> Gold
+                <option value = "silver"> Silver
+            </select>
+
+            <select name = "toleranceSelect" onChange = "setTol(this)">
+                <option value = "gold"> Gold
+                <option value = "silver"> Silver
+                <option value = "none"> None
+            </select>
+        </form>
+
+        <script>
+            var form = document.forms["input"];
+            var tensDigit = form.tensSelect.selectedIndex;
+            var tensColor = form.tensSelect.options[tensDigit].text;
+            var onesDigit = form.onesSelect.selectedIndex;
+            var onesColor = form.onesSelect.options[onesDigit].text;
+            var multDigit = form.multiplierSelect.selectedIndex;
+            var multColor = form.multiplierSelect.options[multDigit].text;
+            var tolDigit = form.toleranceSelect.selectedIndex;
+            var tolColor = form.toleranceSelect.options[tolDigit].text;
+            var table = "<table border = 2 align = center><form name = 'output'>";
+            table += "<tr><th align = middle> Resistance Value: </th>";
+            table += "<th align = 'middle'><input type = 'text' name = 'result' size = 20 onFocus = 'this.blur()'>";
+            table += "</th></tr><tr><td colspan = 2>&nbsp;";
+            table += "<img SRC = 'resleft.png' width = 127 height = 182><img" +
+                    " src='" + tensColor + ".png' name='tens' width=21 height=182><img" +
+                    " src='" + onesColor + ".png' name='ones' width=21 height=182><img" +
+                    " src='" + multColor + ".png' name='mult' width=21 height=182><img" +
+                    " src='spacer.png' width=17 height=182><img" +
+                    " src='" + tolColor + ".png' name='tol' width=21 height=182><img" +
+                    " src='resright.png' width=127 height=182>";
+            table += "&nbsp;</td></tr></form></table>";
+            document.write(table);
+
+        </script>  
+	</div>
+    </body>
+</html>

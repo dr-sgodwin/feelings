@@ -1,0 +1,5 @@
+
+    <resources>
+        <color name="lgt_button">#00FF00</color>
+        <color name="drk_button">#66FF66</color>
+    </resources>

@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="#FFC0CB" >
+
+    <Button
+        android:id="@+id/smile"
+        android:layout_width="100dp"
+        android:minHeight="100dp"
+        android:minWidth="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        
+        android:background="@drawable/circlegreen"
+        android:onClick="smile"
+        android:rotation="90"
+        android:textSize="40sp"
+        android:text="@string/smile"
+        android:textAlignment="center"
+        android:textIsSelectable="false" />
+
+    <Button
+        android:id="@+id/surprise"
+        android:layout_width="100dp"
+        android:minHeight="100dp"
+        android:minWidth="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/smile"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        
+        android:background="@drawable/circleyellow"
+        android:onClick="surprise" 
+        android:rotation="90"
+        android:textSize="40sp"
+        android:text="@string/surprise"
+        android:textAlignment="center" 
+        android:textIsSelectable="false" />
+
+    <Button
+        android:id="@+id/anger"
+        android:layout_width="100dp"
+        android:minHeight="100dp"
+        android:minWidth="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/smile"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        
+        android:background="@drawable/circlered"
+        android:onClick="anger"
+        android:rotation="90"
+        android:textSize="40sp"
+        android:text="@string/anger"
+        android:textAlignment="center" 
+        android:textIsSelectable="false" />
+
+    <Button
+        android:id="@+id/sick"
+        android:layout_width="100dp"
+        android:minHeight="100dp"
+        android:minWidth="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/surprise"
+        android:layout_toRightOf="@+id/anger"
+        android:layout_marginLeft="10dp"       
+        android:layout_marginTop="10dp"
+        
+        android:background="@drawable/circlecyan"
+        android:onClick="sick"
+        android:rotation="90"
+        android:textSize="40sp"
+        android:text="@string/sick"
+        android:textAlignment="center"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/urfeeling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/anger"
+        android:layout_marginTop="20dp"
+        android:text="@string/textview"
+        android:textIsSelectable="false"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
